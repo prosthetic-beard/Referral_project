@@ -24,7 +24,6 @@ class Signup(generics.CreateAPIView):
 
         if serializer.is_valid():
             email = serializer.data['email']
-            company_name = serializer.data['company_name']
             password = serializer.data['password']
 
             try:
@@ -37,7 +36,7 @@ class Signup(generics.CreateAPIView):
                     return Response(data=payload, status=status.HTTP_400_BAD_REQUEST)
 
             except get_user_model().DoesNotExist:
-                user = get_user_model().objects.create_user(email=email, company_name=company_name, password=password)
+                user = get_user_model().objects.create_user(email=email, password=password)
                 UserProfile.objects.create(user=user, account_balance=0)
                 print(user.activation_token)
                 # sendemail

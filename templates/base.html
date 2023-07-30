@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Oitila - Online Money Investment HTML Template</title>
+        <!-- favicon -->
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" type="text/css"> 
+        <!-- fontawesome icon  -->
+        <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}" type="text/css">
+        <!-- flaticon css -->
+        <link rel="stylesheet" href="{% static 'fonts/flaticon.css' %}" type="text/css">
+        <!-- animate.css -->
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}" type="text/css">
+        <!-- magnific popup -->
+        <link rel="stylesheet" href="{% static 'css/modal-video.min.css' %}" type="text/css">
+        <!-- slick css -->
+        <link rel="stylesheet" href="{% static 'css/slick.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/slick-theme.css' %}" type="text/css">
+        <!-- toastr js -->
+        <link rel="stylesheet" href="{% static 'css/toastr.min.css' %}" type="text/css">
+        <!-- data table -->
+        <link rel="stylesheet" href="{% static 'css/jquery.dataTables.css' %}" type="text/css">
+        <!-- stylesheet -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+        <!-- responsive -->
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}" type="text/css">
+    </head>
+
+    <body>
+
+        <div class="notification-alert">
+            <div class="notice-list">
+                
+            </div>
+        </div>
+
+        <!-- preloader begin-->
+        <div class="preloader">
+            <img src="{% static 'img/tenor.gif' %}" alt="">
+        </div>
+        <!-- preloader end -->
+
+        <div class="mobile-navbar-wrapper">
+
+            <!-- header begin -->
+            <div class="header header-style-4" id="header">
+                {% include "common/clock_header.html" %}
+                
+                {% include "common/second_header.html" %}
+            </div>
+            <!-- header end -->
+            {% block content %}
+            
+            {% endblock content %}
+
+            <!-- breadcrumb begin -->
+           
+            <!-- account end -->
+
+            <!-- footer begin -->
+            {% include "common/footer.html" %}
+            <!-- footer end -->
+        
+        </div> <!-- mobile navbar wrapper end -->
+
+        {% include  'common/mobile_nav.html' %}
+
+        
+
+        <!-- jquery -->
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <!-- popper js -->
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <!-- bootstrap -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <!-- modal video js -->
+        <script src="{% static 'js/jquery-modal-video.min.js' %}"></script>
+        <!-- slick js -->
+        <script src="{% static 'js/slick.min.js' %}"></script>
+        <!-- toastr js -->
+        <script src="{% static 'js/toastr.min.js' %}"></script>
+        <!-- chart js -->
+        <script src="{% static 'js/Chart.min.js' %}"></script>
+        <script src="{% static 'js/chart-activate.js' %}"></script>
+        <!-- utils for chart js -->
+        <script src="{% static 'js/utils.js' %}"></script>
+        <!-- data table -->
+        <script src="{% static 'js/jquery.dataTables.js' %}"></script>
+        <script src="{% static 'js/data-able-active.js' %}"></script>
+        <!-- clock js -->
+        <script src="{% static 'js/clock.min.js' %}"></script>
+        <!-- main -->
+        <script src="{% static 'js/main.js' %}"></script>
+
+    </body>
+
+</html>

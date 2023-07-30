@@ -19,7 +19,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserSignUpSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=300, required=True)
-    company_name = serializers.CharField(max_length=300, required=True)
     password = serializers.CharField(required=True)
     confirm_password = serializers.CharField(required=True)
 
