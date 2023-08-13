@@ -1,0 +1,97 @@
+{% load static %}
+
+{% if request.user %}
+<div class="user-statics">
+    <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="single-statics">
+                <div class="part-icon">
+                    <img src="{% static 'img/icon/002-cash.png' %}" alt="">
+                </div>
+                <div class="part-info">
+                    <span class="number">₦ {{ request.user.profile.account_balance }}</span>
+                    <span class="text">Ultimate Balance</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="single-statics">
+                <div class="part-icon">
+                    <img src="{% static 'img/icon/003-credit-card.png' %}" alt="">
+                </div>
+                <div class="part-info">
+                    <span class="number">₦ {{approved_withdrawals.amount__sum}}</span>
+                    <span class="text">Total Payout</span>
+                </div>
+            </div>
+        </div>
+        {% comment %} <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="single-statics">
+                <div class="part-icon">
+                    <img src="{% static '' %}img/icon/001-donation.png" alt="">
+                </div>
+                <div class="part-info">
+                    <span class="number">$24k.00</span>
+                    <span class="text">Deposits Total</span>
+                </div>
+            </div>
+        </div> {% endcomment %}
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="single-statics">
+                <div class="part-icon">
+                    <img src="{% static 'img/icon/004-hourglass.png' %}" alt="">
+                </div>
+                <div class="part-info">
+                    <span class="number">₦ {{ pending_withdrawals.amount__sum}}</span>
+                    <span class="text">Pending Amount</span>
+                </div>
+            </div>
+        </div>
+        {% comment %} <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="single-statics">
+                <div class="part-icon">
+                    <img src="{% static 'img/icon/005-percentage.png' %}" alt="">
+                </div>
+                <div class="part-info">
+                    <span class="number">$465.00</span>
+                    <span class="text">Interest Earn</span>
+                </div>
+            </div>
+        </div> {% endcomment %}
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="single-statics">
+                <div class="part-icon">
+                    <img src="{% static 'img/icon/006-wage.png' %}" alt="">
+                </div>
+                <div class="part-info">
+                    <span class="number">₦ {{refferals_earnings.amount__sum}}</span>
+                    <span class="text">Total Earning</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="single-statics">
+                <div class="part-icon">
+                    <img src="{% static 'img/icon/007-referral.png' %}" alt="">
+                </div>
+                <div class="part-info">
+                    <span class="number">₦ {{refferals_earnings.amount__sum}}</span>
+                    <span class="text">Total Referral Earnings</span>
+                </div>
+            </div>
+        </div>
+        {% comment %} <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+            <div class="single-statics">
+                <div class="part-icon">
+                    <img src="{% static 'img/icon/008-transfer.png' %}" alt="">
+                </div>
+                <div class="part-info">
+                    <span class="number">$534.00</span>
+                    <span class="text">Fund Transfer</span>
+                </div>
+            </div>
+        </div> {% endcomment %}
+    </div>
+</div>
+
+{% endif %}

@@ -34,12 +34,14 @@
                                 </div>
                             </div>
                         </li>
+                        {% if not request.user.is_authenticated %}
                         <li>
                             <div class="user-panel">
                                 <span>
-                                    <a href="#" class="login-btn">Login</a>or</span><a href="#" class="register-btn">Register</a>
-                            </div>
-                        </li>
+                                    <a href="/" class="login-btn">Login</a>or</span><a href="#" class="register-btn">Register</a>
+                                </div>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

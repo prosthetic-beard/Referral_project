@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+<div class="user-dashboard">
+    <div class="container">
+
+        {% include "common/dashboard-menu.html" %}
+
+        
+        {% include "common/user-statistics.html" %}
+        <!-- affiliate begin -->
+        <div class="affiliate">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-7 col-lg-7">
+                        <div class="part-para">
+                            <div class="section-title">
+                                <span class="sub-title">
+                                    Our Awesome Affiliates
+                                </span>
+                                <h2>
+                                    Oitila's Best <span class="special">affiliate</span> Programs
+                                </h2>
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor labore etteme
+                                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation laboris nisi ut aliquip
+                                ex ea commodo consequat. Duis aute irure dolor in repreh voluptate velit esse cillum doloreeu
+                                fugiat nulla pariatur occaecat non proident.
+                            </p>
+
+                            <img src="assets/img/affiliate/img-1.jpg" class="text-img" alt="">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor labore etteme
+                                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation laboris nisi ut aliquip
+                                ex ea commodo consequat. Duis aute irure dolor in repreh voluptate velit esse cillum doloreeu
+                                fugiat nulla pariatur occaecat non proident, sunt inner culpa qui officia repreh voluptate velit
+                                esse cillum dolore occaecat non proident.</p>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor labore etteme
+                                dolore magna aliqua. Ut enim ad minim veniam.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-5">
+                        <div class="part-affilate-feature">
+                            d
+                            <div class="single-feature">
+                                <div class="icon-box">
+                                    <div class="part-icon">
+                                        <img src="{% static 'img/affiliate/conversion-rate.png' %}" alt="">
+                                    </div>
+                                </div>
+                                <div class="part-text">
+                                    <h3 class="title">Unbeatable Conversion Rate</h3>
+                                    <p>Lorem ipsum dolor sitamet, consectetur adipscing elitse
+                                    labore et dolore magna aliqua minim nostrud exercitaton.</p>
+                                </div>
+                            </div>
+                            <div class="single-feature">
+                                <div class="icon-box">
+                                    <div class="part-icon">
+                                        <img src="assets/img/affiliate/digital-marketing.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="part-text">
+                                    <h3 class="title">Marketing Tools</h3>
+                                    <p>Lorem ipsum dolor sitamet, consectetur adipscing elitse
+                                        labore et dolore magna aliqua minim nostrud exercitaton.</p>
+                                </div>
+                            </div>
+                            <div class="single-feature">
+                                <div class="icon-box">
+                                    <div class="part-icon">
+                                        <img src="assets/img/affiliate/advertising.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="part-text">
+                                    <h3 class="title">Bonus &amp; Promotions</h3>
+                                    <p>Lorem ipsum dolor sitamet, consectetur adipscing elitse
+                                        labore et dolore magna aliqua minim nostrud exercitaton.</p>
+                                </div>
+                            </div>
+                            <div class="single-feature">
+                                <div class="icon-box">
+                                    <div class="part-icon">
+                                        <img src="assets/img/affiliate/commission.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="part-text">
+                                    <h3 class="title">High Commissions</h3>
+                                    <p>Lorem ipsum dolor sitamet, consectetur adipscing elitse
+                                        labore et dolore magna aliqua minim nostrud exercitaton.</p>
+                                </div>
+                            </div>
+                            <div class="single-feature">
+                                <div class="icon-box">
+                                    <div class="part-icon">
+                                        <img src="assets/img/affiliate/payment-method.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="part-text">
+                                    <h3 class="title">Fast Payments</h3>
+                                    <p>Lorem ipsum dolor sitamet, consectetur adipscing elitse
+                                        labore et dolore magna aliqua minim nostrud exercitaton.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="affiliate-how-to-do">
+                    <h2 class="title">How It Works</h2>
+                    <div class="single-affiliate">
+                        <div class="part-icon">
+                            <span class="sr-num">1</span>
+                            <img src="assets/img/affiliate/icon-6.png" alt="">
+                        </div>
+                        <div class="part-text">
+                            <p>You display our banner<br>
+                            or link on your website</p>
+                        </div>
+                    </div>
+                    <div class="single-affiliate">
+                        <div class="part-icon">
+                            <span class="sr-num">2</span>
+                            <img src="assets/img/affiliate/icon-7.png" alt="">
+                        </div>
+                        <div class="part-text">
+                            <p>Visitor clicks on the<br>
+                                banner or link</p>
+                        </div>
+                    </div>
+                    <div class="single-affiliate">
+                        <div class="part-icon">
+                            <span class="sr-num">3</span>
+                            <img src="assets/img/affiliate/icon-8.png" alt="">
+                        </div>
+                        <div class="part-text">
+                            <p>Our system tracks<br>
+                                your unique URL</p>
+                        </div>
+                    </div>
+                    <div class="single-affiliate">
+                        <div class="part-icon">
+                            <span class="sr-num">4</span>
+                            <img src="assets/img/affiliate/icon-9.png" alt="">
+                        </div>
+                        <div class="part-text">
+                            <p>The player makes<br>
+                                a deposit</p>
+                        </div>
+                    </div>
+                    <div class="single-affiliate">
+                        <div class="part-icon">
+                            <span class="sr-num">5</span>
+                            <img src="assets/img/affiliate/icon-10.png" alt="">
+                        </div>
+                        <div class="part-text">
+                            <p>You receive a<br>
+                                commission</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="part-para">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12">
+                            <h2 class="title">Highest Conversion Rates</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor labore ette
+                                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation laboris nisi ut aliq
+                                ex ea commodo consequat. Duis aute irure dolor in repreh voluptate velit esse cillum dolore
+                                fugiat nulla pariatur occaecat non proident, sunt inner culpa qui officia repreh voluptate
+                                esse cillum dolore occaecat non proident.</p>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor labore ette
+                                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation laboris nisi ut aliq
+                                ex ea commodo consequat. Duis aute irure dolor in repreh voluptate velit esse cillum dolore
+                                fugiat nulla pariatur occaecat non proident, sunt inner culpa qui officia repreh voluptate
+                                esse cillum dolore occaecat non proident.</p>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor labore ette
+                                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation laboris nisi ut aliq
+                                ex ea commodo consequat. Duis aute irure dolor in repreh voluptate velit esse cillum dolore
+                                fugiat nulla pariatur occaecat non proident, sunt inner culpa qui officia repreh voluptate
+                                esse cillum dolore occaecat non proident.</p>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor labore ette
+                                dolore magna aliqua. Ut enim ad minim veniam.</p>
+                            <a href="#" class="btn-hyipox-2">
+                                <i class="fas fa-plus"></i>
+                                Sing Up
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- affiliate end -->
+
+    </div>
+</div>
+
+{% endblock content %}

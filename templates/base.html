@@ -1,4 +1,6 @@
 {% load static %}
+{% load django_browser_reload %}
+
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
@@ -30,6 +32,33 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
         <!-- responsive -->
         <link rel="stylesheet" href="{% static 'css/responsive.css' %}" type="text/css">
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <!-- popper js -->
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <!-- jquery -->
+        
+        <!-- bootstrap -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <!-- modal video js -->
+        <script src="{% static 'js/jquery-modal-video.min.js' %}"></script>
+        <!-- slick js -->
+        <script src="{% static 'js/slick.min.js' %}"></script>
+        <!-- toastr js -->
+        <script src="{% static 'js/toastr.min.js' %}"></script>
+        <!-- chart js -->
+        <script src="{% static 'js/Chart.min.js' %}"></script>
+        <script src="{% static 'js/chart-activate.js' %}"></script>
+        <!-- utils for chart js -->
+        <script src="{% static 'js/utils.js' %}"></script>
+        <!-- data table -->
+        <script src="{% static 'js/jquery.dataTables.js' %}"></script>
+        <script src="{% static 'js/data-able-active.js' %}"></script>
+        <!-- clock js -->
+        <script src="{% static 'js/clock.min.js' %}"></script>
+        <!-- main -->
+        <script src="{% static 'js/main.js' %}"></script>
+    {% django_browser_reload_script %}
+
     </head>
 
     <body>
@@ -51,10 +80,16 @@
             <!-- header begin -->
             <div class="header header-style-4" id="header">
                 {% include "common/clock_header.html" %}
-                
-                {% include "common/second_header.html" %}
+                    {% include "common/second_header.html" %}
+
             </div>
             <!-- header end -->
+            {% if request.user.is_authenticated %}
+                {% include "common/breadcrumbs.html" %}
+            {% endif %}
+            
+            
+            
             {% block content %}
             
             {% endblock content %}
@@ -73,30 +108,7 @@
 
         
 
-        <!-- jquery -->
-        <script src="{% static 'js/jquery.js' %}"></script>
-        <!-- popper js -->
-        <script src="{% static 'js/popper.min.js' %}"></script>
-        <!-- bootstrap -->
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        <!-- modal video js -->
-        <script src="{% static 'js/jquery-modal-video.min.js' %}"></script>
-        <!-- slick js -->
-        <script src="{% static 'js/slick.min.js' %}"></script>
-        <!-- toastr js -->
-        <script src="{% static 'js/toastr.min.js' %}"></script>
-        <!-- chart js -->
-        <script src="{% static 'js/Chart.min.js' %}"></script>
-        <script src="{% static 'js/chart-activate.js' %}"></script>
-        <!-- utils for chart js -->
-        <script src="{% static 'js/utils.js' %}"></script>
-        <!-- data table -->
-        <script src="{% static 'js/jquery.dataTables.js' %}"></script>
-        <script src="{% static 'js/data-able-active.js' %}"></script>
-        <!-- clock js -->
-        <script src="{% static 'js/clock.min.js' %}"></script>
-        <!-- main -->
-        <script src="{% static 'js/main.js' %}"></script>
+        
 
     </body>
 

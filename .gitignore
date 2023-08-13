@@ -1,1 +1,108 @@
-env
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+#media
+media/
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Distribution / packaging
+.Python
+venv/
+env/
+.env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+db.sqlite3t
+Pipfile
+
+# Files
+__pycache__
+*__pycache__   
+*.pyc
+
+# Python files
+# bravewood/config/development.py
+# *development.py
+
+
+sudo lsof -t -i tcp:8000 | xargs kill -9w
+lsof -t -i tcp:8000 | xargs kill -9
+@media (min-width: 1400px)
+.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 1450px;
+}
+
+# Setting up Redis
+sudo apt update
+
+sudo apt install redis-server
+
+sudo nano /etc/redis/redis.conf
+
+#Next, find the line specifying the supervised directive. By default, this line is set to no. However, to manage Redis as a service, set the supervised directive to systemd (Ubuntu’s init system).
+
+# Save the changes and close the file.
+
+#Finally, restart the Redis service by running:
+
+sudo systemctl restart redis.service
+
+#Verify Redis Installation
+sudo systemctl status redis
+
+#Check Redis Connection
+redis-cli
+
+ping
+#The output should respond with:
+PONG
+
+.env
+*.env
+.env*
+
+.pyc*
+.cypthon-310.pyc*
+*.cypthon-310.pyc
+
+allow 169.255.124.4; #allow your IP
+allow 127.0.0.1; #allow localhost via SSH tunnels
+deny all; #deny all other sources
+
+
+    location ^~ /ovwmyadmin/ {
+         #Settings for phpMyAdmin will go here
+
+        auth_basic "Admin Login";
+        auth_basic_user_file /etc/nginx/pma_pass;
+
+        location ~ \.php$ {
+           include snippets/fastcgi-php.conf;
+           fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+        }
+    }
+
+dev.py*

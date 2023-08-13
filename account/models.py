@@ -14,3 +14,24 @@ class UserProfile(TimestampedModel):
 class Referral(TimestampedModel):
     referrer = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='referrals')
     referred_user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+
+
+class Transactions(TimestampedModel):
+    STATUS_TYPES = (
+        ('P', 'Pending'),
+        ('PC', 'Processing'),
+        ('A', 'Approved'),
+        ('D', 'Denied'),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    type = models.CharField(max_length=20, choices=(('R','Refferals'), ('W','Withdrawals')))
+    amount = models.DecimalField(decimal_places=4, max_digits=15)
+    balance = models.DecimalField(decimal_places=4, max_digits=15)
+    status = models.CharField(max_length=2, choices=STATUS_TYPES, default="P")
+
+
+class Bank(TimestampedModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bank')
+    bank_name = models.CharField(max_length=255)
+    account_name = models.CharField(max_length=255)
+    account_number = models.CharField(max_length=255)

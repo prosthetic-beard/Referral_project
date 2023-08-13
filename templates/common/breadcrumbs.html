@@ -1,0 +1,38 @@
+
+{% load static %}
+<div class="breadcrumb-oitila db-breadcrumb">
+    <div class="container">
+        <div class="row justify-content-lg-around">
+            <div class="col-xl-6 col-lg-7 col-md-5 col-sm-6 col-8">
+                <div class="part-txt">
+                    <h1>User Dashboard</h1>
+                    {% comment %} <ul>
+                        <li>home</li>
+                        <li>{% block breadcrumb %}{% endblock breadcrumb %}</li>
+                    </ul> {% endcomment %}
+                </div>
+            </div>
+
+            {% if request.user %}
+            
+            <div class="col-xl-6 col-lg-5 col-md-7 col-sm-6 col-4 d-flex align-items-center">
+                <div class="db-user-profile">
+                    <div class="part-data">
+                        <span class="name">{{ request.user }}</span>
+                        <ul>
+                            <li>
+                                <span class="text">Balance</span>
+                                <span class="number">₦ {{request.user.profile.account_balance}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="part-img">
+                        <img src="{% static 'img/member-1.jpg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>

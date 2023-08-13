@@ -1,0 +1,46 @@
+
+
+
+<div class="dashboard-menu">
+    <nav>
+        <ul>
+             <li class="nav-item" id="nave">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item" id="nave">
+                <a class="nav-link" href="/how">How to</a>
+            </li>
+            <li class="nav-item" id="nave">
+                <a class="nav-link" href="/tasks">Tasks</a>
+            </li>
+            <li class="nav-item" id="nave">
+                <a class="nav-link" href="/referrals">Referrals</a>
+            </li>
+            <li class="nav-item" id="nave" >
+                <a class="nav-link" href="/withdraw">Withdraw</a>
+            </li>
+            <li class="nav-item" id="nave">
+                <a class="nav-link" href="/profile">Profile</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+<script>
+
+    const getPath = url => {
+        const path = new URL(url).pathname
+        const parts = path.split("/");
+        return parts.length < 3 || !parts.includes("tag") ? parts[1] : parts[3]
+      };
+      
+      const path = getPath(location.href); // getPath(location.href)
+      
+      $("#nave a").each(function() {
+        const lnkPath = getPath($(this).prop("href"));
+        $(this).toggleClass("active", path === lnkPath)
+      })
+
+
+</script>

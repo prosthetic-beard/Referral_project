@@ -11,6 +11,9 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     id = models.UUIDField(auto_created=True, default=uuid.uuid4, primary_key=True, verbose_name='ID', editable=False)
     username = models.CharField(db_index=True, max_length=255, unique=True)
     email = models.CharField(max_length=255, unique=True)
+    firstname = models.CharField(max_length=255)
+    lastname = models.CharField(max_length=255)
+    phone = models.CharField(max_length=255)
     activation_token = models.UUIDField(auto_created=True, default=uuid.uuid4, editable=False, unique=True)
     referral_code = models.CharField(null=True, blank=True, max_length=255)
     is_active = models.BooleanField(default=False)
@@ -22,6 +25,9 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
     def __str__(self):
         return self.email
+    @property
+    def fullname(self):
+        return f'{self.lastname} {self.firstname}'
     
 
     def generate(self):

@@ -10,6 +10,7 @@ class UserManager(BaseUserManager):
         user = self.model(email=self.normalize_email(email))
         user.set_password(password)
         user.username = user.generate_uniquie_username()
+        user.referral_code = user.generate_uniquie_username()
         user.save()
 
         return user

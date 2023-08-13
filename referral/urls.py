@@ -23,6 +23,9 @@ urlpatterns = [
     path('api/auth/', include('authentication.urls')),
     path('', include('base.urls')),
 
+
+    path("__reload__/", include("django_browser_reload.urls")),
+
 ]
 
 

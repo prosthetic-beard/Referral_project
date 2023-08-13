@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="user-dashboard">
+    <div class="container">
+
+        {% include "common/dashboard-menu.html" %}
+
+        
+        {% include "common/user-statistics.html" %}
+
+        <div class="withdraw-section">
+            <div class="row">
+                {% comment %} <div class="col-xl-5 col-lg-5 col-md-5">
+                    <h3 class="title">
+                        Add New Card
+                    </h3>
+                    <div class="add-credit-card card">
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="form-group">
+                                        <label for="exampleInputEmail1">Card Number</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="•••• •••• •••• ••••">
+                                        </div>
+                                        <div class="form-group">
+                                        <label for="exampleInputEmail4">Name on Card</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail4" aria-describedby="emailHelp" placeholder="Farzana Mukta">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6">
+                                        <div class="form-group expire-date-elem">
+                                            <label for="inputDate">Expire date</label>
+                                            <div class="form-row">
+                                                <div class="form-group col-xl-6 col-lg-6 col-6">
+                                                    <input type="text" class="form-control" id="inputdate" placeholder="MM">
+                                                </div>
+                                                <div class="form-group col-xl-6 col-lg-6 col-6">
+                                                    <input type="text" class="form-control" id="inputZip" placeholder="YY">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail4">Card Code</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail4" aria-describedby="emailHelp" placeholder="CVC">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-hyipox-medium btn-add-new-card">Add New Account</button>
+                            </form>
+                        </div>
+                    </div>
+                </div> {% endcomment %}
+                <div class="col-xl-12 col-lg-12 col-md-12">
+                    <h3 class="title">
+                        Withdraw Your Funds
+                    </h3>
+                    <div class="last-step">
+                        <div class="payment-method-list row">
+
+                            <div class="col-xl-6 col-lg-6 col-sm-12">
+                                <div class="oit-width-1">
+                                    <label>Enter Your Amount</label>
+                                    <form>
+                                        <span class="currency-symbol" id="basic-addon1">₦</span>
+                                        <input type="text" class="inputted-amount" value="10" />
+                                            
+                                    </form>
+                                    <p>Minimum withdrawal: ₦1000</p>
+                                    
+
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-sm-12">
+                                <div class="available-balance-el">
+                                    <span class="title">Balance</span>
+                                    <ul>
+                                        <li class="available">
+                                            <span class="text">Available: </span>
+                                            <span class="amount">₦{{request.user.profile.account_balance}}</span>
+                                        </li>
+                                        
+                                    </ul>
+                                    <a href="#" class="btn-hyipox-medium withdraw-btn">Let's Withdraw</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

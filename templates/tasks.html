@@ -1,0 +1,115 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="user-dashboard">
+    <div class="container">
+
+        {% include "common/dashboard-menu.html" %}
+
+        
+        {% include "common/user-statistics.html" %}
+
+        <!-- account begin -->
+        <h3 class="title">
+            Download and Install our apps
+        </h3>
+
+        <div class="d-none">
+            <div class="icon-completed">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+                    <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"></circle>
+                    <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "></polyline>
+                </svg>
+            </div>
+        </div>
+
+        <div class="select-plan">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                    <div class="single-plan">
+                        <h3>COD mobile</h3>
+                        {% comment %} <div class="plan-icon">
+                            <img class="icon-img" src="assets/img/icon/bronze-medal.png" alt="">
+                        </div>
+                        <div class="price-info">
+                            <span class="parcent">$10</span>
+                            <span class="price">99%<small> || per month</small></span>
+                        </div> {% endcomment %}
+                        <a href="#" class="btn-hyipox-medium price-button">Download</a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                    <div class="single-plan">
+                        <h3>PUBG</h3>
+                        {% comment %} <div class="plan-icon">
+                            <img class="icon-img" src="assets/img/icon/bronze-medal.png" alt="">
+                        </div>
+                        <div class="price-info">
+                            <span class="parcent">$10</span>
+                            <span class="price">99%<small> || per month</small></span>
+                        </div> {% endcomment %}
+                        <a href="#" class="btn-hyipox-medium price-button">Download</a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                    <div class="single-plan">
+                        <h3>Free Fire</h3>
+                        {% comment %} <div class="plan-icon">
+                            <img class="icon-img" src="assets/img/icon/bronze-medal.png" alt="">
+                        </div>
+                        <div class="price-info">
+                            <span class="parcent">$10</span>
+                            <span class="price">99%<small> || per month</small></span>
+                        </div> {% endcomment %}
+                        <a href="#" class="btn-hyipox-medium price-button">Download</a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                    <div class="single-plan">
+                        <h3>Modern Warfare</h3>
+                        {% comment %} <div class="plan-icon">
+                            <img class="icon-img" src="assets/img/icon/bronze-medal.png" alt="">
+                        </div>
+                        <div class="price-info">
+                            <span class="parcent">$10</span>
+                            <span class="price">99%<small> || per month</small></span>
+                        </div> {% endcomment %}
+                        <a href="#" class="btn-hyipox-medium price-button">Download</a>
+                    </div>
+                </div>
+                {% comment %} <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                    <div class="single-plan">
+                        <h3>Basic Plan</h3>
+                        <div class="plan-icon">
+                            <img class="icon-img" src="assets/img/icon/bronze-medal.png" alt="">
+                        </div>
+                        <div class="price-info">
+                            <span class="parcent">$10</span>
+                            <span class="price">99%<small> || per month</small></span>
+                        </div>
+                        <a href="#" class="btn-hyipox-medium price-button">Invest now</a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4">
+                    <div class="single-plan">
+                        <h3>Basic Plan</h3>
+                        <div class="plan-icon">
+                            <img class="icon-img" src="assets/img/icon/bronze-medal.png" alt="">
+                        </div>
+                        <div class="price-info">
+                            <span class="parcent">$10</span>
+                            <span class="price">99%<small> || per month</small></span>
+                        </div>
+                        <a href="#" class="btn-hyipox-medium price-button">Invest now</a>
+                    </div>
+                </div> {% endcomment %}
+            </div>
+        </div>
+        <!-- account end -->
+
+    </div>
+</div>
+{% endblock content %}
