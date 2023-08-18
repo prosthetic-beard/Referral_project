@@ -3,6 +3,8 @@ Django==3.2.13
 django-browser-reload
 django-cors-headers
 djangorestframework==3.14.0
+gunicorn==21.2.0
+packaging==23.1
 pytz==2023.3
 rest-api-payload==0.0.7
 sqlparse==0.4.4
