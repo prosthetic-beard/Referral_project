@@ -1,11 +1,12 @@
 
 from django.urls import path, include
-from .views import home, Login, withdraw, referrals, logout_view, profile, how, tasks
+from .views import home, Login, withdraw, referrals, logout_view, profile, how, tasks, signup
 
 app_name = 'base'
 
 urlpatterns = [
     path('', Login, name='login' ),
+    path('register', signup, name='signup' ),
     path('dashboard', home, name='home'),
     path('withdraw', withdraw, name='withdraw'),
     path('referrals', referrals, name='referrals'),

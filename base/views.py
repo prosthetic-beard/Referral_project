@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
-from account.models import Referral, Transactions
-from authentication.forms import LoginForm
+from account.models import Referral, Transactions, UserProfile
+from authentication.forms import LoginForm, NewUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Sum
+from django.contrib.auth import get_user_model
+
 
 # Create your views here.
 
@@ -27,6 +29,39 @@ def Login(request):
         'form': login_form
     }
     return render(request,"login.html", context)
+
+def signup(request):
+    refe = request.GET.get("ref")
+    form = NewUserForm(initial={"referral_code": refe})
+
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            reffered = UserProfile.objects.get(user=user)
+            try:
+                ref_user = get_user_model().objects.get(username=refe)
+                try:
+                    refferal = UserProfile.objects.get(user=ref_user)
+                    Referral.objects.create(referrer=refferal, referred_user=reffered)
+                    refferal.account_balance += 100
+                    refferal.save()
+                    Transactions.objects.create(user=get_user_model().objects.get(username=refe), type="R", amount=100, balance=refferal.account_balance)
+                except UserProfile.DoesNotExist:
+                    print("2")
+            except get_user_model().DoesNotExist:
+                print("None")
+            
+            login(request, user)
+            return redirect("base:home")
+            
+            # messages.success(request, "Registration successful." )
+        # messages.error(request, "Unsuccessful registration. Invalid information.")
+    context = {
+        'form': form
+    }
+    return render(request,"register.html", context)
+
 
 
 def logout_view(request):

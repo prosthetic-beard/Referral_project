@@ -13,7 +13,7 @@ class UserProfile(TimestampedModel):
 
 class Referral(TimestampedModel):
     referrer = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='referrals')
-    referred_user = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    referred_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
 
 class Transactions(TimestampedModel):

@@ -16,7 +16,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     phone = models.CharField(max_length=255)
     activation_token = models.UUIDField(auto_created=True, default=uuid.uuid4, editable=False, unique=True)
     referral_code = models.CharField(null=True, blank=True, max_length=255)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
     objects = UserManager()
@@ -43,3 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         if not user:
             username = unique_username
             return username
+        
+    def save(self, *args, **kwargs):
+      self.username = self.generate_uniquie_username()
+      super(User, self).save(*args, **kwargs) 

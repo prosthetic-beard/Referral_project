@@ -72,7 +72,8 @@
                         Refer Friend & Earn ₦100 Credit
                     </h3>
                     <form>
-                        <input type="text" value="{{host}}/{{request.user.username}}" disabled>
+                        {% comment %} <input type="text" value="{{host}}/{{request.user.username}}" disabled> {% endcomment %}
+                        <input type="text" value="{{host}}{% url 'base:signup' %}?ref={{request.user.username}}" disabled>
                         <button class="copy-btn">
                             <span class="icon"><i class="fas fa-copy"></i></span>
                             <span class="text">Copy</span>
