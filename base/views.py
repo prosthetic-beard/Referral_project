@@ -4,6 +4,7 @@ from authentication.forms import LoginForm, NewUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Sum
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -63,61 +64,42 @@ def signup(request):
     return render(request,"register.html", context)
 
 
-
+@login_required(login_url="/")
 def logout_view(request):
     logout(request)
     return redirect("/")
 
-
+@login_required(login_url="/")
 def home(request):
 
-    context = {
-        
-        }
+    context = {}
     return render(request,"dashboard.html", context)
 
+@login_required(login_url="/")
 def withdraw(request):
-    context = {
-        # "approved_withdrawals": approved_withdrawals,
-        # "pending_withdrawals": pending_withdrawals,
-        # "refferals_earnings": refferals_earnings,
-        
-        }
+    context = {}
     return render(request,"withdraw.html", context)
 
+@login_required(login_url="/")
 def profile(request):
-    context = {
-        # "approved_withdrawals": approved_withdrawals,
-        # "pending_withdrawals": pending_withdrawals,
-        # "refferals_earnings": refferals_earnings,
-        
-        }
+    context = {}
     return render(request,"profile.html", context)
 
+@login_required(login_url="/")
 def how(request):
-    context = {
-        # "approved_withdrawals": approved_withdrawals,
-        # "pending_withdrawals": pending_withdrawals,
-        # "refferals_earnings": refferals_earnings,
-        
-        }
+    context = {}
     return render(request,"how-to.html", context)
 
+@login_required(login_url="/")
 def tasks(request):
-    context = {
-        # "approved_withdrawals": approved_withdrawals,
-        # "pending_withdrawals": pending_withdrawals,
-        # "refferals_earnings": refferals_earnings,
-        
-        }
+    context = {}
     return render(request,"tasks.html", context)
 
+@login_required(login_url="/")
 def referrals(request):
     referrals_count = Referral.objects.filter(referrer=request.user.profile).count()
     context = {
         "referrals_count": referrals_count,
-        # "pending_withdrawals": pending_withdrawals,
-        # "refferals_earnings": refferals_earnings,
         
         }
     return render(request,"referral.html", context)
