@@ -1,4 +1,5 @@
 <div class="top">
+    
     <div class="container">
         <div class="row">
             <div class="col-xl-5 col-lg-3">
@@ -9,7 +10,19 @@
             <div class="col-xl-7 col-lg-9 d-xl-flex d-lg-flex d-block align-items-center">
                 <div class="part-right">
                     <ul>
-                        <li>
+                        <li class="nav-item join-now-btn">
+                            {% if messages %}
+                                {% for message in messages %}
+                                <div class="mb-0 text-center alert alert-dismissible fade show {{ message.extra_tags }}" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                {% endfor %}
+                            {% endif %} 
+                        </li>
+                        {% comment %} <li>
                             <span class="simple-text">Sever Time : </span>
                             <div class="server-time">
                                 <div class="single-time clock-time">
@@ -33,7 +46,7 @@
                                     </span>
                                 </div>
                             </div>
-                        </li>
+                        </li> {% endcomment %}
                         {% if not request.user.is_authenticated %}
                         <li>
                             <div class="user-panel">

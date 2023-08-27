@@ -4,9 +4,11 @@
 <div class="dashboard-menu">
     <nav>
         <ul>
-             <li class="nav-item" id="nave">
-                <a class="nav-link" href="/dashboard">Dashboard</a>
-            </li>
+            
+            <li class="nav-item" id="nave">
+               <a class="nav-link" href="/dashboard">Dashboard</a>
+           </li>
+            
             <li class="nav-item" id="nave">
                 <a class="nav-link" href="/how">How to</a>
             </li>
@@ -16,12 +18,16 @@
             <li class="nav-item" id="nave">
                 <a class="nav-link" href="/referrals">Referrals</a>
             </li>
-            <li class="nav-item" id="nave" >
-                <a class="nav-link" href="/withdraw">Withdraw</a>
-            </li>
-            <li class="nav-item" id="nave">
-                <a class="nav-link" href="/profile">Profile</a>
-            </li>
+            {% if request.user.is_authenticated %}
+                {% if completed %}
+                <li class="nav-item" id="nave" >
+                    <a class="nav-link" href="/withdraw">Withdraw</a>
+                </li>
+                <li class="nav-item" id="nave">
+                    <a class="nav-link" href="/profile">Profile</a>
+                </li>
+                {% endif %}
+            {% endif %}
         </ul>
     </nav>
 </div>

@@ -11,7 +11,7 @@
         {% include "common/dashboard-menu.html" %}
 
         
-        {% include "common/user-statistics.html" %}
+        {% comment %} {% include "common/user-statistics.html" %} {% endcomment %}
 
         <div class="withdraw-section">
             <div class="row">
@@ -60,39 +60,86 @@
                     <h3 class="title">
                         Withdraw Your Funds
                     </h3>
+                    <form method="POST"> 
+                        {% csrf_token %}
                     <div class="last-step">
-                        <div class="payment-method-list row">
+                            <div class="payment-method-list row">
 
-                            <div class="col-xl-6 col-lg-6 col-sm-12">
-                                <div class="oit-width-1">
-                                    <label>Enter Your Amount</label>
-                                    <form>
-                                        <span class="currency-symbol" id="basic-addon1">₦</span>
-                                        <input type="text" class="inputted-amount" value="10" />
-                                            
-                                    </form>
-                                    <p>Minimum withdrawal: ₦1000</p>
-                                    
-
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-sm-12">
-                                <div class="available-balance-el">
-                                    <span class="title">Balance</span>
-                                    <ul>
-                                        <li class="available">
-                                            <span class="text">Available: </span>
-                                            <span class="amount">₦{{request.user.profile.account_balance}}</span>
-                                        </li>
+                                <div class="col-xl-6 col-lg-6 col-sm-12">
+                                    <div class="oit-width-1">
+                                        <label>Enter Your Amount</label>
+                                            <span class="currency-symbol" id="basic-addon1">₦</span>
+                                            {{ form.amount }}
+                                            {% comment %} <input type="text" class="inputted-amount" value="10" /> {% endcomment %}
+                                                
+                                        <p>Minimum withdrawal: ₦1000</p>
                                         
-                                    </ul>
-                                    <a href="#" class="btn-hyipox-medium withdraw-btn">Let's Withdraw</a>
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-sm-12">
+                                    <div class="available-balance-el">
+                                        <span class="title">Balance</span>
+                                        <ul>
+                                            <li class="available">
+                                                <span class="text">Available: </span>
+                                                <span class="amount">₦{{request.user.profile.account_balance}}</span>
+                                            </li>
+                                            
+                                        </ul>
+                                        <button type="submit" class="btn-hyipox-medium withdraw-btn">Let's Withdraw</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
+        </div>
+
+        <div class="mt-4">
+            <h3 class="title">
+                Previous withdrawals
+            </h3>
+        </div>
+
+        <div class="responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    {% for i in withdrawals %}
+                    <tr>
+                        <td>{{ i.id }}</td>
+                        <td>{{ i.created_at }}</td>
+                        <td>₦ {{ i.amount}}</td>
+                        <td>
+                            {% if i.status == "P" %}
+                            <p class="badge badge-secondary">Pending</p>
+                            {% elif i.status == "PC" %}
+                            <p class="badge badge-warning">Processing</p>
+                            {% elif i.status == "A" %}
+                            <p class="badge badge-success">Approved</p>
+                            {% elif i.status == "D" %}
+                            <p class="badge badge-danger">Denied</p>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if i.status == "P" %}
+                                <a href="{% url 'base:delete-withdraw' i.id %}" class="btn btn-danger">Delete</a>
+                            {% endif %}
+                        </td>
+
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
 
     </div>

@@ -18,6 +18,11 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
     referral_code = models.CharField(null=True, blank=True, max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    first_app = models.BooleanField(default=False)
+    second_app = models.BooleanField(default=False)
+    third_app = models.BooleanField(default=False)
+    fourth_app = models.BooleanField(default=False)
+    
 
     objects = UserManager()
 

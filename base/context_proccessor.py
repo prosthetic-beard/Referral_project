@@ -9,6 +9,7 @@ def host(request):
     # print())
     context = {
         'host': request.environ.get("HTTP_HOST"),
+        'completed': request.user.first_app and request.user.second_app and request.user.third_app and request.user.fourth_app if request.user.is_authenticated else False,
     }
     return context
 
