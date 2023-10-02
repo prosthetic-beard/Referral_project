@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Oitila - Online Money Investment HTML Template</title>
+        <title> Readershome - Online Money Investment HTML Template</title>
         <!-- favicon -->
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <!-- bootstrap -->
@@ -63,6 +63,8 @@
 
     <body>
 
+        {% block Index %}
+
         <div class="notification-alert">
             <div class="notice-list">
                 
@@ -107,7 +109,7 @@
         {% include  'common/mobile_nav.html' %}
 
         
-
+        {% endblock Index %}
         
 
     </body>

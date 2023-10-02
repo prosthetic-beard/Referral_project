@@ -11,7 +11,9 @@ from django.contrib import messages
 
 # Create your views here.
 
-
+def index(request):
+    context = {}
+    return render(request,"home.html", context)
 def Login(request):
     if request.user.is_authenticated:
         return redirect("base:home")
@@ -175,6 +177,8 @@ def fourth_login(request):
     return render(request,"login.html", context)
 
 def signup(request):
+    if request.user.is_authenticated:
+        return redirect("base:home")
     refe = request.GET.get("ref")
     form = NewUserForm(initial={"referral_code": refe})
 
@@ -236,6 +240,8 @@ def withdraw(request):
 
             if int(amount) > int(balance):
                 messages.error(request, "You can not withdraw more than your balance", extra_tags="alert-danger")
+            elif int(amount) < 2000:
+                messages.error(request, "Minimum withdrawal is 2000 Naira", extra_tags="alert-danger")
 
             else:
                 if prev_trans.exists():

@@ -1,11 +1,12 @@
 
 from django.urls import path, include
-from .views import home, Login, withdraw, referrals, logout_view, profile, how, tasks, signup, first_login, second_login, third_login, fourth_login, delete_withdrawal
+from .views import home, Login, withdraw, referrals, logout_view, profile, how, tasks, signup, first_login, second_login, third_login, fourth_login, delete_withdrawal, index
 
 app_name = 'base'
 
 urlpatterns = [
-    path('', signup, name='signup' ),
+    path('', index, name='index' ),
+    path('register', signup, name='signup' ),
     path('login', Login, name='login' ),
     path('first_app', first_login, name='first-login' ),
     path('second_app', second_login, name='second-login' ),

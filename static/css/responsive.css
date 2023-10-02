@@ -433,6 +433,7 @@
     /* cta */
     .cta {
         padding: 60px 0;
+        margin: 20px 0px;
     }
     .cta .cta-bg .cta-text h2 {
         font-size: 30px;
