@@ -28,6 +28,10 @@ class Transactions(TimestampedModel):
     amount = models.DecimalField(decimal_places=4, max_digits=15)
     balance = models.DecimalField(decimal_places=4, max_digits=15)
     status = models.CharField(max_length=2, choices=STATUS_TYPES, default="P")
+    
+    def __str__(self):
+        return f'{self.id} - {self.user.email} - {self.amount} - {self.status}'
+    
 
 
 class Bank(TimestampedModel):
@@ -35,3 +39,12 @@ class Bank(TimestampedModel):
     bank_name = models.CharField(max_length=255)
     account_name = models.CharField(max_length=255)
     account_number = models.CharField(max_length=255)
+    
+    
+class Coupon(TimestampedModel):
+    code = models.CharField(("Coupon Code"), max_length=50)
+    
+    
+    def __str__(self):
+        return self.code
+    

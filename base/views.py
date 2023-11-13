@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from account.models import Referral, Transactions, UserProfile
-from authentication.forms import LoginForm, NewUserForm, WithdrawalForm
+from account.models import Coupon, Referral, Transactions, UserProfile
+from authentication.forms import CouponForm, LoginForm, NewUserForm, WithdrawalForm
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Sum
 from django.contrib.auth import get_user_model
@@ -57,7 +57,7 @@ def first_login(request):
                         return redirect('base:home')
                     else:
                         user_profile = UserProfile.objects.get(user=user)
-                        user_profile.account_balance += 100
+                        user_profile.account_balance += 500
                         user.first_app = True
                         user.save()
                         user_profile.save()
@@ -91,7 +91,7 @@ def second_login(request):
                         return redirect('base:home')
                     else:
                         user_profile = UserProfile.objects.get(user=user)
-                        user_profile.account_balance += 100
+                        user_profile.account_balance += 500
                         user.second_app = True
                         user.save()
                         user_profile.save()
@@ -125,7 +125,7 @@ def third_login(request):
                         return redirect('base:home')
                     else:
                         user_profile = UserProfile.objects.get(user=user)
-                        user_profile.account_balance += 100
+                        user_profile.account_balance += 500
                         user.third_app = True
                         user.save()
                         user_profile.save()
@@ -160,7 +160,7 @@ def fourth_login(request):
                         return redirect('base:home')
                     else:
                         user_profile = UserProfile.objects.get(user=user)
-                        user_profile.account_balance += 100
+                        user_profile.account_balance += 500
                         user.fourth_app = True
                         user.save()
                         user_profile.save()
@@ -232,24 +232,46 @@ def withdraw(request):
     user_profile = UserProfile.objects.get(user=request.user)
     prev_trans = Transactions.objects.filter(user=request.user, type="W", status__in=["P", "PC"])
     form= WithdrawalForm()
+    coupon_form = CouponForm()
+    
     if request.method == "POST":
         form= WithdrawalForm(request.POST)
+        coupon_form = CouponForm(request.POST)
+        if coupon_form.is_valid():
+            code = coupon_form.cleaned_data.get("code")
+            coupon = Coupon.objects.filter(code=code)
+            if coupon.exists():
+                request.user.is_vip = True
+                request.user.save()
+                messages.success(request, "VIP badge pruchase successful", extra_tags="alert-success")
+            else:
+                messages.error(request, "Invalid coupon code", extra_tags="alert-danger")
+                
+                
+            
+        
+        
         if form.is_valid():
             amount = form.cleaned_data.get("amount")
             balance = user_profile.account_balance
 
             if int(amount) > int(balance):
                 messages.error(request, "You can not withdraw more than your balance", extra_tags="alert-danger")
-            elif int(amount) < 2000:
-                messages.error(request, "Minimum withdrawal is 2000 Naira", extra_tags="alert-danger")
+            elif int(amount) < 4000:
+                messages.error(request, "Minimum withdrawal is 4000 Naira", extra_tags="alert-danger")
 
             else:
                 if prev_trans.exists():
                     messages.error(request, "You have a pending transaction, Please wait till it has been approved before making another withdrawal.", extra_tags="alert-danger")
 
                 else:
-                    Transactions.objects.create(user=request.user, type="W", status="P", amount=amount, balance=int(balance)-int(amount))
-                    messages.success(request, "Your withdrawal request has been successfully initiated, please wait for it to be processed", extra_tags="alert-success")
+                    if request.user.is_vip:
+                        Transactions.objects.create(user=request.user, type="W", status="P", amount=amount, balance=int(balance)-int(amount))
+                        messages.success(request, "Your withdrawal request has been successfully initiated, please wait for it to be processed", extra_tags="alert-success")
+                    else:
+                        percent = int(0.2 * amount)
+                        Transactions.objects.create(user=request.user, type="W", status="P", amount=percent, balance=int(balance)-int(percent))
+                        messages.success(request, "Your withdrawal request has been successfully initiated, please wait for it to be processed", extra_tags="alert-success")
                  
     form= WithdrawalForm()
 
@@ -258,6 +280,7 @@ def withdraw(request):
     context = {
         "withdrawals" :  withdrawals,
         "form" :  form,
+        "coupon_form": coupon_form
         }
     return render(request,"withdraw.html", context)
 

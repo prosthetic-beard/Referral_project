@@ -62,7 +62,18 @@
                         Withdraw Your Funds
                     </h3>
 
-                    <button type="submit" class="btn btn-secondary rounded my-3">Get VIP badge</button>
+                    {% if not request.user.is_vip %}
+                    <div>
+                        
+                        <form  method="POST">
+                         {% csrf_token %}
+ 
+                         {{coupon_form.code}}
+                         <button type="submit" class="btn btn-secondary rounded my-3">Get VIP badge</button>
+                        </form>
+                     </div>
+                    {% endif %}
+
                     <p>Vip batch gets to withdaw and get paid 100% of their referral earnings</p>
                     <p>Non VIP gets paid 20%</p>
                     <form method="POST"> 

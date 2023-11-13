@@ -45,3 +45,8 @@ class WithdrawalForm(forms.Form):
     amount = forms.CharField(required=True, widget=forms.NumberInput(
         attrs={'class': "form-control inputted-amount", "placeholder": "0.00", "id":"Amount"}))
     
+    
+class CouponForm(forms.Form):
+	code = forms.CharField(required=True, widget=forms.TextInput(
+        attrs={'class': "form-control inputted-amount", "placeholder": "Enter Coupon code", "id":"Amount"}))
+    
