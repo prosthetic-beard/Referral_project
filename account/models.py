@@ -10,6 +10,9 @@ User = get_user_model()
 class UserProfile(TimestampedModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     account_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    
+    def __str__(self):
+        return self.user.email
 
 class Referral(TimestampedModel):
     referrer = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='referrals')
@@ -31,6 +34,13 @@ class Transactions(TimestampedModel):
     
     def __str__(self):
         return f'{self.id} - {self.user.email} - {self.amount} - {self.status}'
+    
+    def save(self, *args, **kwargs):
+        user_profile = UserProfile.objects.get(user=self.user)
+        if self.type == 'W' and self.status == 'A':
+            user_profile.account_balance = self.balance
+            user_profile.save()
+        super(Transactions, self).save(*args, **kwargs)
     
 
 

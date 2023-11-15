@@ -12,9 +12,6 @@ from authentication.models import User
 import uuid
 
 
-
-# Create your views here.
-
 class Signup(generics.CreateAPIView):
     permission_classes = (AllowAny,)
     serializer_class = UserSignUpSerializer

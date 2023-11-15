@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     "corsheaders",
+    "anymail",
+    
 
     'authentication',
     'base',
@@ -141,6 +143,38 @@ MEDIA_ROOT = "media"
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# EMAIL_USE_SSL = False
+# EMAIL_USE_TLS = True
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'Readershomereply@gmail.com'
+# # EMAIL_HOST_PASSWORD = 'Readershome57152023' 
+# EMAIL_HOST_PASSWORD = 'xitddzhwvcvkycec' 
+
+SERVER_EMAIL = "no-reply <Readershomereply@gmail.com>" 
+
+ANYMAIL = {
+    # (exact settings here depend on your ESP...)
+    "SENDINBLUE_API_KEY": "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",
+    "SENDINBLUE_SENDER_DOMAIN": SERVER_EMAIL, 
+}
+
+EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
+
+
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_HOST_USER = SERVER_EMAIL
+EMAIL_PORT = 587
+EMAIL_HOST_PASSWORD = 'Readershome57152023'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "no-reply <Readershomereply@gmail.com>"
+
+
 
 
 

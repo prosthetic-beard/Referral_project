@@ -6,11 +6,41 @@ from django.db.models import Sum
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.http import FileResponse, HttpResponseNotFound
+from django.shortcuts import get_object_or_404
+from django.views import View
+import os
+from django.conf import settings
 
 
+
+class successMessage(SuccessMessageMixin):
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        success_message = self.get_success_message(form.cleaned_data)
+        if success_message:
+            messages.success(self.request, success_message, extra_tags='alert alert-success')
+        return response
+    
 
 # Create your views here.
 
+class ResetPasswordView(successMessage, PasswordResetView):
+    template_name = 'password_reset.html'
+    email_template_name = 'password_reset_email.html'
+    subject_template_name = 'password_reset_subject.txt'
+    success_message = "We've emailed you instructions for setting your password, " \
+                      "if an account exists with the email you entered. You should receive them shortly." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = reverse_lazy('base:login')
+    
+    
+    
 def index(request):
     context = {}
     return render(request,"home.html", context)
@@ -243,7 +273,7 @@ def withdraw(request):
             if coupon.exists():
                 request.user.is_vip = True
                 request.user.save()
-                messages.success(request, "VIP badge pruchase successful", extra_tags="alert-success")
+                messages.success(request, "VIP badge purchase successful", extra_tags="alert-success")
             else:
                 messages.error(request, "Invalid coupon code", extra_tags="alert-danger")
                 
@@ -269,11 +299,14 @@ def withdraw(request):
                         Transactions.objects.create(user=request.user, type="W", status="P", amount=amount, balance=int(balance)-int(amount))
                         messages.success(request, "Your withdrawal request has been successfully initiated, please wait for it to be processed", extra_tags="alert-success")
                     else:
-                        percent = int(0.2 * amount)
+                        percent = 0.2 * int(amount)
+                        print(percent, 'percent', amount, 'amount')
                         Transactions.objects.create(user=request.user, type="W", status="P", amount=percent, balance=int(balance)-int(percent))
                         messages.success(request, "Your withdrawal request has been successfully initiated, please wait for it to be processed", extra_tags="alert-success")
                  
-    form= WithdrawalForm()
+    else:
+        form= WithdrawalForm()
+        coupon_form = CouponForm()
 
 
 
@@ -315,3 +348,23 @@ def referrals(request):
         
         }
     return render(request,"referral.html", context)
+
+
+class FileDownloadView(View):
+    def get(self, request, file_name):
+        # Specify the path to your file in the base folder
+        file_path = os.path.join(settings.BASE_DIR, file_name)
+        print(file_path)
+        
+        # Check if the file exists
+        if os.path.exists(file_path):
+            # Create a FileResponse directly without manually opening the file
+            response = FileResponse(open(file_path, 'rb'))
+            # Set the content type for the response to APK
+            response['content_type'] = 'application/vnd.android.package-archive'
+            # Set the Content-Disposition header to force download
+            response['Content-Disposition'] = f'attachment; filename="{os.path.basename(file_path)}"'
+            return response
+        else:
+            # Return a 404 response if the file does not exist
+            return get_object_or_404(HttpResponseNotFound)
