@@ -3,6 +3,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 
+from account.models import Bank
+
 
 # Create your forms here.
 
@@ -49,4 +51,15 @@ class WithdrawalForm(forms.Form):
 class CouponForm(forms.Form):
 	code = forms.CharField(required=True, widget=forms.TextInput(
         attrs={'class': "form-control inputted-amount", "placeholder": "Enter Coupon code", "id":"Amount"}))
+ 
+ 
+class BankForm(forms.ModelForm):
+    bank_name = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': "form-control", "placeholder": "Enter bank name", "id":"exampleInputEmail1"}))
+    account_name = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': "form-control", "placeholder": "Enter account name", "id":"exampleInputEmail1"}))
+    account_number = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': "form-control", "placeholder": "Enter account number", "id":"exampleInputEmail1"}))
+    
+    class Meta:
+        model = Bank
+        exclude = ["user"]
+
     

@@ -10,9 +10,15 @@ class TransactionAdmin(admin.ModelAdmin):
     
     def user_email(self, obj):
         return str(obj.user.email)
+    
+    
+class BankAdmin(admin.ModelAdmin):
+    list_display =['user', 'bank_name', 'account_name','account_number', 'created_at']
+    search_fields = ('user',)
+    list_filter =['user', ]
 
 admin.site.register(UserProfile)
 admin.site.register(Referral)
 admin.site.register(Transactions, TransactionAdmin)
-admin.site.register(Bank)
+admin.site.register(Bank, BankAdmin)
 admin.site.register(Coupon)

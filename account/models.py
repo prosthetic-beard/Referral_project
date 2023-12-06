@@ -46,9 +46,12 @@ class Transactions(TimestampedModel):
 
 class Bank(TimestampedModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bank')
-    bank_name = models.CharField(max_length=255)
-    account_name = models.CharField(max_length=255)
-    account_number = models.CharField(max_length=255)
+    bank_name = models.CharField(max_length=255, blank=True, null=True)
+    account_name = models.CharField(max_length=255, blank=True, null=True)
+    account_number = models.CharField(max_length=255, blank=True, null=True)
+    
+    def __str__(self):
+        return self.user.email
     
     
 class Coupon(TimestampedModel):

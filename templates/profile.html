@@ -35,25 +35,7 @@
                                             <div class="part-pic">
                                                 <img src="{% static 'img/member-1.jpg' %}" alt="">
                                             </div>
-                                            <div class="social-link">
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="fab fa-facebook-messenger"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="fab fa-youtube"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="fab fa-twitter"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                     <div class="col-xl-8 col-lg-8 col-md-8">
@@ -84,31 +66,36 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="edit-profile text-center">
+                            {% comment %} <div class="edit-profile text-center">
                                 <a href="#" class="btn-hyipox-2">Edit Profile</a>
-                            </div>
+                            </div> {% endcomment %}
                         </div>
                         <div class="tab-pane fade" id="payment-info" role="tabpanel" aria-labelledby="payment-info-tab">
                             <h3 class="title">Payment Info</h3>
                             <div class="payment-info">
                                 <div class="responsive">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            <tr>
-                                                <td>Bank Name</td>
-                                                <td>{{request.user.bank.bank_name}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Account Name</td>
-                                                <td>1234 Example Ave | Seattle, WA</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Account Number</td>
-                                                <td>999000</td>
-                                                <td><a href="#" class="payment-info-button">Edit</a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <form method='POST'>
+                                        
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                                {% csrf_token %}
+                                                <tr>
+                                                    <td>Bank Name</td>
+                                                    <td>{{form.bank_name}}</td>
+                                                    {% comment %} <td>{{request.user.bank_set.bank_name}}</td> {% endcomment %}
+                                                </tr>
+                                                <tr>
+                                                    <td>Account Name</td>
+                                                    <td>{{form.account_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Account Number</td>
+                                                    <td>{{form.account_number}}</td>
+                                                    <td><button type="submit" class="btn-hyipox-medium withdraw-btn">Save</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </form>
 {% comment %} 
                                     <table class="table table-bordered">
                                         <tbody>

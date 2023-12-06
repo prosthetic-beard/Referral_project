@@ -6,5 +6,6 @@ class CustomAdmin(admin.ModelAdmin):
     search_fields = ('email',)
     list_filter =['is_vip', ]
     
+    
 
 admin.site.register(User, CustomAdmin)

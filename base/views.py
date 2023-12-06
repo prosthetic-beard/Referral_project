@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from account.models import Coupon, Referral, Transactions, UserProfile
-from authentication.forms import CouponForm, LoginForm, NewUserForm, WithdrawalForm
+from account.models import Bank, Coupon, Referral, Transactions, UserProfile
+from authentication.forms import BankForm, CouponForm, LoginForm, NewUserForm, WithdrawalForm
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Sum
 from django.contrib.auth import get_user_model
@@ -319,7 +319,18 @@ def withdraw(request):
 
 @login_required(login_url="/")
 def profile(request):
-    context = {}
+    bank = Bank.objects.get(user=request.user)
+    form = BankForm(instance=bank)
+    if request.method == 'POST':
+        form = BankForm(instance=bank, data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Bank account updated successfully", extra_tags="alert-success")
+        else:
+            messages.error(request, "Something went wrong, please try again", extra_tags="alert-danger")
+    context = {
+        'form': form
+    }
     return render(request,"profile.html", context)
 
 @login_required(login_url="/")
