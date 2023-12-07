@@ -171,9 +171,12 @@ SERVER_EMAIL = "no-reply <Readershomereply@gmail.com>"
 
 ANYMAIL = {
     # (exact settings here depend on your ESP...)
-    "SENDINBLUE_API_KEY": "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",
+    # "SENDINBLUE_API_KEY": "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",
+    "SENDINBLUE_API_KEY": "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",
     "SENDINBLUE_SENDER_DOMAIN": SERVER_EMAIL, 
 }
+
+
 
 EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
 
