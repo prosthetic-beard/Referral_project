@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_w3ob!t1pbib_!hdc$)@ri_-q%4$fa7!cyqg_zsh_+g_&%ts)*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = ["*"]
 
@@ -89,23 +95,23 @@ WSGI_APPLICATION = 'referral.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'readersh_shomedb',
-        'USER': 'readersh_readershome',
-        'PASSWORD': 'November-0411',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'readersh_shomedb',
+#         'USER': 'readersh_readershome',
+#         'PASSWORD': 'November-0411',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
 
 
 
@@ -173,8 +179,9 @@ SERVER_EMAIL = "no-reply <Readershomereply@gmail.com>"
 
 ANYMAIL = {
     # (exact settings here depend on your ESP...)
-    # "SENDINBLUE_API_KEY": "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",
-    "SENDINBLUE_API_KEY": "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",
+    "SENDINBLUE_API_KEY": os.environ.get('SENDINBLUE_API_KEY'),
+    
+    
     "SENDINBLUE_SENDER_DOMAIN": SERVER_EMAIL, 
 }
 
@@ -186,7 +193,7 @@ EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
 EMAIL_HOST = 'smtp-relay.sendinblue.com'
 EMAIL_HOST_USER = SERVER_EMAIL
 EMAIL_PORT = 587
-EMAIL_HOST_PASSWORD = 'Readershome57152023'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "no-reply <Readershomereply@gmail.com>"
 
