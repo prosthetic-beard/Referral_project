@@ -360,6 +360,14 @@ def referrals(request):
         }
     return render(request,"referral.html", context)
 
+def privacy(request):
+    # referrals_count = Referral.objects.filter(referrer=request.user.profile).count()
+    context = {
+        # "referrals_count": referrals_count,
+        
+        }
+    return render(request,"privacy.html", context)
+
 
 class FileDownloadView(View):
     def get(self, request, file_name):
