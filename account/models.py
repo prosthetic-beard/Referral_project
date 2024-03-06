@@ -17,6 +17,18 @@ class UserProfile(TimestampedModel):
 class Referral(TimestampedModel):
     referrer = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='referrals')
     referred_user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    
+    
+    def __str__(self):
+        return f'{self.referrer} - {self.referred_user}'
+    
+    @property
+    def referrer_balance(self):
+        return self.referrer.account_balance
+    
+    @property
+    def referred_user_balance(self):
+        return self.referred_user.account_balance
 
 
 class Transactions(TimestampedModel):

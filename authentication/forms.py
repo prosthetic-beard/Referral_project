@@ -28,12 +28,12 @@ class NewUserForm(UserCreationForm):
 		model = get_user_model()
 		fields = ("email", "firstname", "lastname",  "phone", "password1", "password2", "referral_code")
 
-	def save(self, commit=True):
-		user = super(NewUserForm, self).save(commit=False)
-		user.email = self.cleaned_data['email']
-		if commit:
-			user.save()
-		return user
+	# def save(self, commit=True):
+	# 	user = super(NewUserForm, self).save(commit=False)
+	# 	user.email = self.cleaned_data['email']
+	# 	if commit:
+	# 		user.save()
+	# 	return user
 	
 
 class LoginForm(forms.Form):

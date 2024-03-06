@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> Readershome - Online Money Investment HTML Template</title>
         <!-- favicon -->
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="{% static 'img/logo2.png' %}" type="image/x-icon">
         <!-- bootstrap -->
         <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" type="text/css"> 
         <!-- fontawesome icon  -->
@@ -57,6 +57,17 @@
         <script src="{% static 'js/clock.min.js' %}"></script>
         <!-- main -->
         <script src="{% static 'js/main.js' %}"></script>
+
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '0a610fa4a93497fff5ec06ec060626c1',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+            document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/0a610fa4a93497fff5ec06ec060626c1/invoke.js"></scr' + 'ipt>');
+        </script>
     {% django_browser_reload_script %}
 
     </head>

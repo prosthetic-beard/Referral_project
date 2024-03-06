@@ -9,8 +9,12 @@
 <div class="user-dashboard">
     <div class="container">
 
-        
+        {% if request.user.is_vip %}
+            <span class="badge badge-success">VIP</span>
+        {% endif %}
         {% include "common/dashboard-menu.html" %}
+
+        
 
         
         {% include "common/user-statistics.html" %}

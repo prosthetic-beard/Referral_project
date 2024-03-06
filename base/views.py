@@ -215,24 +215,27 @@ def signup(request):
     if request.method == "POST":
         form = NewUserForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            reffered = UserProfile.objects.get(user=user)
             try:
-                ref_user = get_user_model().objects.get(username=refe)
+                user = form.save()
+                reffered = UserProfile.objects.get(user=user)
                 try:
-                    refferal = UserProfile.objects.get(user=ref_user)
-                    Referral.objects.create(referrer=refferal, referred_user=reffered)
-                    refferal.account_balance += 100
-                    refferal.save()
-                    Transactions.objects.create(user=get_user_model().objects.get(username=refe), type="R", amount=100, balance=refferal.account_balance)
-                except UserProfile.DoesNotExist:
-                    messages.error(request, "Invalid user", extra_tags="alert-danger")
-            except get_user_model().DoesNotExist:
-                messages.error(request, "Referral not found", extra_tags="alert-danger")
-            
-            login(request, user)
-            messages.success(request, "Login successful", extra_tags="alert-success")
-            return redirect("base:home")
+                    ref_user = get_user_model().objects.get(username=refe)
+                    try:
+                        refferal = UserProfile.objects.get(user=ref_user)
+                        Referral.objects.create(referrer=refferal, referred_user=reffered)
+                        refferal.account_balance += 100
+                        refferal.save()
+                        Transactions.objects.create(user=get_user_model().objects.get(username=refe), type="R", amount=100, balance=refferal.account_balance)
+                    except UserProfile.DoesNotExist:
+                        messages.error(request, "Invalid user", extra_tags="alert-danger")
+                except get_user_model().DoesNotExist:
+                    messages.error(request, "Referral not found", extra_tags="alert-danger")
+                
+                login(request, user)
+                messages.success(request, "Login successful", extra_tags="alert-success")
+                return redirect("base:home")
+            except Exception as e:
+                messages.error(request, str(e), extra_tags="alert-danger")
         else:
             messages.error(request, "Something went wrong, please try again", extra_tags="alert-danger")
 

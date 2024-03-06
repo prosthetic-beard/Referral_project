@@ -46,9 +46,10 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         
         # Filter user by the generated unique username id
         user = User.objects.filter(username=unique_username)
-        if not user:
-            username = unique_username
-            return username
+        if user:
+            unique_username = self.generate()
+        
+        return unique_username
         
     def save(self, *args, **kwargs):
       self.username = self.generate_uniquie_username()
